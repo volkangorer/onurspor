@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+<div  style="  border-top:2px ridge blue;  " >
+
+    
+    <h3 style="color:crimson;">*********HABERLER********</h3>
+    {% if anasayfa_haber %}
+    <br>
+    
+    {% for haber in anasayfa_haber %}
+    <div style=" ">
+
+        
+            <table class="table">
+             <thead>
+                <tr style="color:cornflowerblue;" >
+                <th scope="col">Kategori</th>
+                <th scope="col">Başlık</th>
+                <th scope="col">Oluşturulma Tarihi</th>
+    
+            
+            
+            
+                </tr>
+             </thead>
+            <tbody>
+            
+                <tr>
+                    <th scope="row">{{haber.haber_category}}</th>
+                    <th>{{haber.haber_title}}</th>
+                    <th scope="row">{{haber.created_date}}</th>
+                    
+                    
+                    
+                </tr>
+    
+               
+                
+            </tbody>
+    
+            
+            </table>
+            {% if haber.haber_image %}
+            <div style=" float:left; "><img src = "{{haber.haber_image.url}}" alt = "Görüntülenemiyor..." width = "200" height = "200"></div> 
+            
+            {% endif %}
+            
+            <div style="margin-left:250px;  ">
+                <div>{{haber.haber_content|safe|truncatewords:30}}</div>
+                <div><a href="/databases/haber_detail/{{haber.id}}"><button class="alert alert-danger" style="">Devamını oku</button></a> </div>
+                
+            </div>
+            </div>
+            
+    
+    {% endfor %}
+    
+        
+
+
+
+
+{% else %}
+<div class="alert alert-danger">
+    Haber Bulunamadı
+
+</div>
+
+
+{% endif %}
+
+
+</div>
+
+
+
+<br>
+
+
+<div style="margin-top:50px; border-top:2px ridge blue;  " >
+
+    <h3  style="color:crimson;">********DUYURULAR********</h3>
+    {% if anasayfa_duyuru %}
+    <br>
+    
+    {% for duyuru in anasayfa_duyuru %}
+    <table class="table">
+            <thead>
+              <tr style="color:cornflowerblue;" >
+                <th scope="col">Kategori</th>
+                <th scope="col">Başlık</th>
+                <th scope="col">Oluşturulma Tarihi</th>
+                
+        
+                
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                        <th scope="row">{{duyuru.duyuru_category}}</th>
+                        <th>{{duyuru.duyuru_title}}</th>
+                        <th scope="row">{{duyuru.created_date}}</th>
+                        
+                        
+                        
+                        
+                    </tr>
+                
+              
+            </tbody>
+        </table>
+        <div style="">{{duyuru.duyuru_content|safe}}</div>
+    {% endfor %}
+    
+     
+    
+    
+    
+    {% else %}
+    <div class="alert alert-danger">
+        Duyuru Bulunamadı
+    
+    </div>
+    
+    
+    {% endif %}
+
+</div>
+
+
+
+
+{% endblock body %}
+

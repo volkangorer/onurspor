@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3>Puan Durumu</h3>
+{% if puandurumları %}
+
+<table class="table">
+        <thead>
+          <tr  style="color:blue;" >
+            
+            <th scope="col">Kategory</th>
+            <th scope="col">Pozisyon</th>
+            <th scope="col">Takım</th>
+            <th scope="col">Galibiyet</th>
+            <th scope="col">Beraberlik</th>
+            <th scope="col">Mağlubiyet</th>
+            <th scope="col">A-GOL</th>
+            <th scope="col">Y-GOL</th>
+            <th scope="col">Puan</th>
+
+            
+            
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for puandurumu in puandurumları %}
+                <tr>
+                    <th scope="row">{{puandurumu.category}}</th>
+                    <th scope="row">{{puandurumu.pozisyon}}</th>
+                    <th scope="row">{{puandurumu.takım}}</th>
+                    <th scope="row">{{puandurumu.galibiyet}}</th>
+                    <th scope="row">{{puandurumu.beraberlik}}</th>
+                    <th scope="row">{{puandurumu.mağlubiyet}}</th>
+                    <th scope="row">{{puandurumu.a_gol}}</th>
+                    <th scope="row">{{puandurumu.y_gol}}</th>
+                    <th scope="row">{{puandurumu.puan}}</th>
+                    
+                    
+                </tr>
+            {% endfor %}
+          
+        </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-danger">
+    Henüz bir içerik bulunmuyor.
+
+</div>
+{% endif %}
+<hr>
+
+<h3>Oyuncular</h3>
+
+{% if oyuncular %}
+
+<table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">Pozisyon</th>
+        <th scope="col">Yaş</th>
+        <th scope="col">İsim</th>
+        
+        
+        <th scope="col"></th>
+        
+        
+
+        
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for oyuncu in oyuncular %}
+            <tr>
+                
+                <th scope="row">{{oyuncu.position}}</th>
+                <th scope="row">{{oyuncu.age}}</th>
+                <th scope="row">{{oyuncu.name}}</th>
+                
+                <th scope="col"><a href="/databases/detail/{{oyuncu.id}}"><button class="alert alert-info">Detay</button></a>  </th>
+                
+                
+                
+                
+            </tr>
+        {% endfor %}
+      
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-danger">
+    Henüz bir içerik bulunmuyor.
+
+</div>
+{% endif %}
+
+{% endblock body %}
